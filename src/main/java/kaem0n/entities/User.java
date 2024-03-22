@@ -1,12 +1,22 @@
 package kaem0n.entities;
 
-import java.time.LocalDate;
+import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.util.List;
+
+@Entity
+@Table(name = "users")
 public class User {
-    private String cardId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "card_id")
+    private long cardId;
     private String name;
     private String surname;
     private LocalDate birthday;
+    @OneToMany(mappedBy = "user")
+    private List<Loan> loans;
 
     public User() {}
 
@@ -16,7 +26,7 @@ public class User {
         this.birthday = birthday;
     }
 
-    public String getCardId() {
+    public long getCardId() {
         return cardId;
     }
 

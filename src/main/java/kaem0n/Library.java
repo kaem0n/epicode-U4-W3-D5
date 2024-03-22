@@ -10,7 +10,6 @@ public class Library {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("u4-w3-d5");
     public static void main(String[] args) {
         EntityManager em = emf.createEntityManager();
-        String test = faker.code().isbn13(true);
-        System.out.println(test);
+        System.out.println("ok");
     }
 }

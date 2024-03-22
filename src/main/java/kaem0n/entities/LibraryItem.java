@@ -1,12 +1,22 @@
 package kaem0n.entities;
 
+import jakarta.persistence.*;
 import kaem0n.Library;
 
+import java.util.List;
+
+@Entity
+@Table(name = "library_items")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class LibraryItem {
+    @Id
     protected String isbn;
     protected String title;
+    @Column(name = "publication_year")
     protected int publicationYear;
     protected int pages;
+    @OneToMany(mappedBy = "item")
+    protected List<Loan> loans;
 
     protected LibraryItem() {}
 
