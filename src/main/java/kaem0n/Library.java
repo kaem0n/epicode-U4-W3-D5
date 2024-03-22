@@ -50,6 +50,6 @@ public class Library {
 //        lid.findBooksByAuthor("Cherlyn Roob").forEach(System.out::println);
 //        lid.findByTitle("to").forEach(System.out::println);
 //        ld.findExpidedLoans().forEach(System.out::println);
-
+//        lid.findBorrowedItems(1).forEach(System.out::println);
     }
 }

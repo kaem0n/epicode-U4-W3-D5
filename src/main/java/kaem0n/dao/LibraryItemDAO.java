@@ -55,7 +55,9 @@ public class LibraryItemDAO {
         return query.getResultList();
     }
 
-//    public List<LibraryItem> findBorrowedItems(long userId) {
-//        TypedQuery<LibraryItem> query = em.createQuery("SELECT li FROM LibraryItem li WHERE ", LibraryItem.class);
-//    }
+    public List<LibraryItem> findBorrowedItems(long cardId) {
+        TypedQuery<LibraryItem> query = em.createNamedQuery("findBorrowedItems", LibraryItem.class);
+        query.setParameter("cardId", cardId);
+        return query.getResultList();
+    }
 }
