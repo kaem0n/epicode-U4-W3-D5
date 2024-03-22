@@ -6,6 +6,9 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "loans")
+@NamedQuery(name = "findExpiredLoans",
+        query = "SELECT l FROM Loan l WHERE (l.returnDate is NULL AND l.loanExpiration < CURRENT_DATE)" +
+                "OR (l.returnDate > l.loanExpiration)")
 public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,7 +64,8 @@ public class Loan {
     @Override
     public String toString() {
         return "Loan{" +
-                "user=" + user +
+                "id=" + id +
+                ", user=" + user +
                 ", item=" + item +
                 ", loanDate=" + loanDate +
                 ", loanExpiration=" + loanExpiration +

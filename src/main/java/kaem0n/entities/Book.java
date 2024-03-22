@@ -1,13 +1,11 @@
 package kaem0n.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import kaem0n.enums.BookGenre;
 
 @Entity
 @Table(name = "books")
+@NamedQuery(name = "findByAuthor", query = "SELECT b FROM Book b WHERE b.author = :author")
 public class Book extends LibraryItem {
     private String author;
     @Enumerated(EnumType.STRING)

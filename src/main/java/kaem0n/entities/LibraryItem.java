@@ -8,6 +8,12 @@ import java.util.List;
 @Entity
 @Table(name = "library_items")
 @Inheritance(strategy = InheritanceType.JOINED)
+@NamedQuery(name = "findByYear", query = "SELECT li FROM LibraryItem li WHERE li.publicationYear = :year")
+@NamedQuery(name = "findByTitle", query = "SELECT li FROM LibraryItem li WHERE LOWER(li.title) LIKE LOWER(:title)")
+//@NamedQuery(name = "findBorrowedItems",
+//        query = "SELECT li FROM LibraryItem li " +
+//                "JOIN Loan l ON li = l.item" +
+//                "JOIN User u ON u = l.user")
 public abstract class LibraryItem {
     @Id
     protected String isbn;
