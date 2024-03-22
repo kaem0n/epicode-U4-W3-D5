@@ -5,7 +5,7 @@ import kaem0n.enums.BookGenre;
 
 @Entity
 @Table(name = "books")
-@NamedQuery(name = "findByAuthor", query = "SELECT b FROM Book b WHERE b.author = :author")
+@NamedQuery(name = "findByAuthor", query = "SELECT b FROM Book b WHERE LOWER(b.author) = LOWER(:author)")
 public class Book extends LibraryItem {
     private String author;
     @Enumerated(EnumType.STRING)

@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 import kaem0n.entities.Loan;
+import kaem0n.exceptions.NotFoundException;
 
 import java.util.List;
 
@@ -18,6 +19,12 @@ public class LoanDAO {
         em.persist(loan);
         tr.commit();
         System.out.println("Success! Loan for user " + loan.getUser().getCardId() + " has been registered!");
+    }
+
+    public Loan findById(long id) {
+        Loan loan = em.find(Loan.class, id);
+        if (loan == null) throw new NotFoundException(id);
+        else return loan;
     }
 
     public List<Loan> findExpidedLoans() {

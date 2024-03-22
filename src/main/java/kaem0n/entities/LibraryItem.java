@@ -13,7 +13,7 @@ import java.util.List;
 @NamedQuery(name = "findBorrowedItems",
         query = "SELECT li FROM LibraryItem li " +
                 "JOIN Loan l ON li = l.item " +
-                "WHERE l.user.cardId = :cardId")
+                "WHERE l.user.cardId = :cardId AND l.returnDate IS NULL")
 public abstract class LibraryItem {
     @Id
     protected String isbn;

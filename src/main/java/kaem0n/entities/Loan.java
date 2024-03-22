@@ -7,7 +7,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "loans")
 @NamedQuery(name = "findExpiredLoans",
-        query = "SELECT l FROM Loan l WHERE (l.returnDate is NULL AND l.loanExpiration < CURRENT_DATE)" +
+        query = "SELECT l FROM Loan l WHERE (l.returnDate IS NULL AND l.loanExpiration < CURRENT_DATE) " +
                 "OR (l.returnDate > l.loanExpiration)")
 public class Loan {
     @Id
@@ -57,8 +57,19 @@ public class Loan {
         return returnDate;
     }
 
-    public void setReturnDate(LocalDate returnDate) {
+    private void setReturnDate(LocalDate returnDate) {
         this.returnDate = returnDate;
+    }
+
+    public void returnItem(EntityManager em) {
+        if (returnDate == null) {
+            EntityTransaction tr = em.getTransaction();
+            tr.begin();
+            this.setReturnDate(LocalDate.now());
+            tr.commit();
+            if (returnDate.isAfter(loanExpiration)) System.out.println("Item returned successfully... You are LATE!");
+            else System.out.println("Item returned successfully! See you next time!");
+        } else System.out.println("Item already returned on date " + returnDate + ".");
     }
 
     @Override

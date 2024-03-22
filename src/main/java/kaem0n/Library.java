@@ -44,12 +44,19 @@ public class Library {
 //        ld.save(new Loan(ud.findById(1), lid.findItemByISBN("979-0-204-23215-4"), LocalDate.parse("2024-03-03")));
 //        ld.save(new Loan(ud.findById(2), lid.findItemByISBN("978-0-7461-8607-7"), LocalDate.parse("2024-02-28")));
 //        ld.save(new Loan(ud.findById(3), lid.findItemByISBN("979-0-204-23215-4"), LocalDate.parse("2024-02-04")));
+//        ld.save(new Loan(ud.findById(2), lid.findItemByISBN("979-1-7559-6835-6"), LocalDate.parse("2024-01-28")));
 
 
 //        lid.findItemsByYear(2005).forEach(System.out::println);
 //        lid.findBooksByAuthor("Cherlyn Roob").forEach(System.out::println);
+//        lid.findBooksByAuthor("Cherlyn Roob".toLowerCase()).forEach(System.out::println);
+//        lid.findBooksByAuthor("Cherlyn Roob".toUpperCase()).forEach(System.out::println);
 //        lid.findByTitle("to").forEach(System.out::println);
 //        ld.findExpidedLoans().forEach(System.out::println);
-//        lid.findBorrowedItems(1).forEach(System.out::println);
+        lid.findBorrowedItems(1).forEach(System.out::println);
+        lid.findBorrowedItems(2).forEach(System.out::println);
+        lid.findBorrowedItems(3).forEach(System.out::println);
+
+//        ld.findById(5).returnItem(em);
     }
 }
